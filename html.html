@@ -1,30 +1,160 @@
 <!DOCTYPE html>
-<html>
-    <head> 
-        <title> HTML - Entra21</title>
-    </head>
-    <body>
-         <h1>
-            <img src="https://cdn.sonicadigital.com.br/entra21/storage/settings/1/original-691cbe5cd50d1.png" alt="Entra 21" />
-        </h1>
-        <ul>
-            <li>
-                <a href="/html.html">HTML</a>
-            </li>
-            <li>
-                <a href="/css.html">CSS</a>
-            </li>
-            <li>
-                <a href="/java.html">JavaScript</a>
-            </li>
-            <li>
-                <a href="frontend_backend.html">FrontEnd e BackEnd</a>
-            </li>
-        </ul>
-        <h2>HTML</h2>
-        <img src="/assets/img/html.png" alt="HTML Logo">
-        <p> HTML é a sigla para Hypertext Markup Language ( Linguagem de Marcação de Hipertexto). </p>
-        <p> De forma simples: HTML é a base de qualquer página web. Ele serve para estruturar o conteúdo de um site.</p>
-    </body>
+<html lang="pt-br">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media System - Entra21</title>
+    <style>
+        /* Variáveis de Estilo Tecnológico */
+        :root {
+            --neon-blue: #00f2ff;
+            --neon-purple: #bc13fe;
+            --dark-bg: #050505;
+            --grid-color: rgba(0, 242, 255, 0.05);
+            --text-main: #e0e0e0;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            background-image: 
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 30px 30px;
+            color: var(--text-main);
+            font-family: 'Courier New', Courier, monospace;
+            min-height: 100vh;
+        }
+
+        /* Efeito de Monitor Antigo */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        header {
+            padding: 30px;
+            text-align: center;
+            border-bottom: 2px solid var(--neon-blue);
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        header img {
+            max-width: 180px;
+            filter: drop-shadow(0 0 5px var(--neon-blue));
+        }
+
+        /* Menu Sincronizado */
+        nav {
+            background: rgba(0, 0, 0, 0.85);
+            border-bottom: 1px solid var(--neon-purple);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        nav ul li a {
+            color: var(--neon-blue);
+            text-decoration: none;
+            padding: 15px 25px;
+            display: block;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background: var(--neon-blue);
+            color: var(--dark-bg);
+            box-shadow: 0 0 20px var(--neon-blue);
+        }
+
+        main {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 40px;
+            background: rgba(10, 10, 10, 0.9);
+            border: 1px solid var(--neon-blue);
+            clip-path: polygon(0 0, 100% 0, 100% 95%, 97% 100%, 0 100%);
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            color: var(--neon-purple);
+            text-shadow: 0 0 10px var(--neon-purple);
+            margin-bottom: 25px;
+            border-left: 5px solid var(--neon-blue);
+            padding-left: 15px;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* Proporção 16:9 */
+            height: 0;
+            overflow: hidden;
+            border: 2px solid var(--neon-blue);
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .status {
+            color: var(--neon-blue);
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="https://cdn.sonicadigital.com.br/entra21/storage/settings/1/original-691cbe5cd50d1.png" alt="Entra 21">
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">INÍCIO</a></li>
+            <li><a href="html.html">HTML</a></li>
+            <li><a href="css.html">CSS</a></li>
+            <li><a href="java.html">JS</a></li>
+            <li><a href="frontend_backend.html">CORE</a></li>
+            <li><a href="youtube.html">VÍDEOS</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="status">> STREAMING_SERVICE: ACTIVE | SOURCE: YOUTUBE</div>
+        <h2>Vídeos</h2>
+        
+        <div class="video-container">
+            <iframe 
+                src="https://www.youtube.com/embed/rag_tPxv858" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" 
+                allowfullscreen>
+            </iframe>
+        </div>
+    </main>
+
+</body>
 </html>
