@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - Entra21</title>
+    <style>
+        /* Variáveis e reset iguais ao index */
+        :root {
+            --neon-blue: #00f2ff;
+            --neon-purple: #bc13fe; 
+            --dark-bg: #050505;
+            --grid-color: rgba(0, 242, 255, 0.05);
+            --text-main: #e0e0e0;
+            --card-bg: rgba(10,10,10,0.9);
+            --muted: #b2bec3;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--dark-bg);
+            background-image:
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 30px 30px;
+            color: var(--text-main);
+            font-family: 'Courier New', Courier, monospace;
+            min-height: 100vh;
+            padding-bottom: 40px;
+        }
+
+        /* Scanline */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        header {
+            padding: 30px;
+            text-align: center;
+            border-bottom: 2px solid var(--neon-blue);
+            background: rgba(0,0,0,0.9);
+        }
+
+        header img { max-width: 180px; filter: drop-shadow(0 0 5px var(--neon-blue)); }
+
+        nav {
+            background: rgba(0, 0, 0, 0.85);
+            border-bottom: 1px solid var(--neon-purple);
+        }
+
+        nav ul { display: flex; justify-content: center; list-style: none; flex-wrap: wrap; }
+
+        nav ul li a {
+            color: var(--neon-blue);
+            text-decoration: none;
+            padding: 12px 18px;
+            display: block;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            background: var(--neon-blue);
+            color: var(--dark-bg);
+            box-shadow: 0 0 20px var(--neon-blue);
+        }
+
+        main {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background: var(--card-bg);
+            border: 1px solid var(--neon-blue);
+            clip-path: polygon(0 0, 100% 0, 100% 95%, 97% 100%, 0 100%);
+        }
+
+        h1 { 
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .status { color: var(--neon-blue); font-size: 0.8rem; margin-bottom: 10px; opacity: 0.8; text-align: center; }
+
+        /* Form card que combina com o layout */
+        .form-card {
+            background: rgba(0,0,0,0.6);
+            border: 1px solid rgba(255,255,255,0.04);
+            padding: 22px;
+            border-radius: 6px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="number"],
+        input[type="button"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 14px;
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 4px;
+            background: rgba(255,255,255,0.03);
+            color: var(--text-main);
+            font-family: inherit;
+        }
+
+        /* Estilização para selects (cidade, gênero) combinando com os inputs */
+        select {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 14px;
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 4px;
+            background: rgba(255,255,255,0.03);
+            color: var(--text-main);
+            font-family: inherit;
+            cursor: pointer;
+            /* remove aparência nativa e adiciona seta personalizada */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            padding-right: 38px; /* espaço para a seta */
+            background-image:
+                linear-gradient(45deg, transparent 50%, var(--text-main) 50%),
+                linear-gradient(135deg, var(--text-main) 50%, transparent 50%),
+                linear-gradient(to right, rgba(255,255,255,0.02), rgba(255,255,255,0.02));
+            background-position: calc(100% - 18px) calc(50% - 3px), calc(100% - 13px) calc(50% - 3px), right 10px center;
+            background-size: 6px 6px, 6px 6px, 1px 60%;
+            background-repeat: no-repeat;
+        }
+
+        select:focus,
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        input[type="date"]:focus,
+        input[type="number"]:focus,
+        textarea:focus {
+            outline: none;
+            box-shadow: 0 0 8px rgba(0,242,255,0.12);
+            border-color: var(--neon-blue);
+            background: rgba(255,255,255,0.04);
+        }
+        
+        textarea { resize: vertical; min-height: 100px; }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+            color: #000;
+            border: none;
+            padding: 10px 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+            transition: transform .12s, box-shadow .12s;
+        }
+
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.7); }
+
+        .btn.ghost {
+            background: transparent;
+            color: var(--neon-blue);
+            border: 1px solid rgba(0,242,255,0.15);
+        }
+
+        .muted-note { color: var(--muted); font-size: 0.85rem; margin-top: 8px; }
+
+        @media(max-width:700px) {
+            .form-row { grid-template-columns: 1fr; }
+            nav ul { gap: 6px; }
+            main { padding: 18px; margin: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="https://cdn.sonicadigital.com.br/entra21/storage/settings/1/original-691cbe5cd50d1.png" alt="Entra 21">
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">INÍCIO</a></li>
+            <li><a href="html.html">HTML</a></li>
+            <li><a href="css.html">CSS</a></li>
+            <li><a href="java.html">JS</a></li>
+            <li><a href="frontend_backend.html">SISTEMA</a></li>
+            <li><a href="youtube.html">VÍDEOS</a></li>
+            <li><a href="contato.html">CONTATO</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="status">> SYSTEM_READY: CONTACT_PORTAL</div>
+
+        <h1>Formulário de Contato</h1>
+
+        <div class="form-card">
+            <form action="enviar.php" method="post">
+                <label for="Nome_completo">Nome:</label>
+                <input type="text" id="Nome_completo" name="Nome_completo" required>
+
+                <div class="form-row">
+                    <div>
+                        <label for="email_user">Email:</label>
+                        <input type="email" id="email_user" name="email_user" required>
+                    </div>
+                    <div>
+                        <label for="telefone_user">Telefone:</label>
+                        <input type="tel" id="telefone_user" name="telefone_user" required>
+                    </div>
+                    <div>
+                        <label for="cidade_user">Cidade:</label>
+                        <select id="cidade_user" name="cidade_user" required>
+                            <option value="cidade1">Cidade 1</option>
+                            <option value="cidade2">Cidade 2</option>
+                            <option value="cidade3">Cidade 3</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                        <label for="genero_user">Gênero:</label>
+                        <select id="genero_user" name="genero_user" required>
+                            <option value="masculino">Masculino</option>
+                            <option value="feminino">Feminino</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                    </div>
+                    <br>
+                    <div>    
+                        <h1>Selecione uma das opções</h1>
+                        <br>
+                        <label for="label_genero_user">Genero:</label>
+                        <div>
+                            <input type="radio" id="masculino" name="genero_user" value="masculino" required>
+                            <label for="masculino">Masculino</label>
+                            <input type="radio" id="feminino" name="genero_user" value="feminino">
+                            <label for="feminino">Feminino</label>
+                            <input type="radio" id="outro" name="genero_user" value="outro">
+                            <label for="outro">Outro</label>
+                        </div>
+                    </div>
+
+                <label for="assunto">Assunto:</label>
+                <input type="text" id="assunto" name="assunto" required>
+                <div>
+                    <label for="mensagem_user">Mensagem:</label>
+                    <textarea id="mensagem_user" name="mensagem_user" rows="4" required></textarea>
+                </div>
+
+                <div 
+                class="form-row">
+                    <div>
+                        <label for="data_contato">Data de Contato:</label>
+                        <input type="date" id="data_contato" name="data_contato" required>
+                    </div>
+                    <div>
+                        <label for="idade_user">Idade:</label>
+                        <input type="number" id="idade_user" name="idade_user" min="18" required>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn">Enviar</button>
+                    <button type="reset" class="btn ghost">Limpar</button>
+                    <button type="button" class="btn ghost" onclick="window.location.href='index.html'">Voltar</button>
+                </div>
+
+                <p class="muted-note">Ao enviar você concorda com o processamento dos seus dados conforme a política do site.</p>
+            </form>
+        </div>
+    </main>
+
+</body>
+</html>
